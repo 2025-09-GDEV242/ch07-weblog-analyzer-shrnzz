@@ -96,5 +96,10 @@ public class LogAnalyzer
     }
     
     // method to return the starting hour of the busiest two-hour period
-    
+    public int busiestTwoHourPeriod()
+    {
+        int maxTwoHours = 0;
+        int startHour = 0;
+        
+    }
 }

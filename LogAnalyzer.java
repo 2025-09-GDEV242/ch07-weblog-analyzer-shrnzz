@@ -61,4 +61,15 @@ public class LogAnalyzer
     {
         reader.printData();
     }
+    
+    // return the total number of web accesses in the file 
+    public int numberOfAccesses()
+    {
+        int total = 0;
+        for(int count: hourCounts){
+            total += count;
+        }
+        return total;
+    }
+    
 }

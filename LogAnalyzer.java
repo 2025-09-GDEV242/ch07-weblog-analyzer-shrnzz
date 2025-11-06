@@ -22,6 +22,12 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader("demo.log");
     }
+    // create an object to analyze hourly web accesses from a specific file
+    public LogAnalyzer(String filename){
+        hourCounts = new int[24];
+        reader = new LogfileReader(filename);
+    }
+    
 
     /**
      * Analyze the hourly access data from the log file.
@@ -54,5 +60,54 @@ public class LogAnalyzer
     public void printData()
     {
         reader.printData();
+    }
+    
+    // return the total number of web accesses in the file 
+    public int numberOfAccesses()
+    {
+        int total = 0;
+        for(int count: hourCounts){
+            total += count;
+        }
+        return total;
+    }
+    
+    //busiest hour method
+    public int busiestHour()
+    {
+        int busiest = 0;
+        for(int hour = 1; hour < hourCounts.length; hour++){
+            if (hourCounts[hour] > hourCounts[busiest]){
+                busiest = hour;
+            }
+        }
+        return busiest;
+    }
+    
+    //quietest hour method to find and return the quietest hour in the log
+    public int quietestHour(){
+        int quietest = 0;
+        for(int hour = 1; hour < hourCounts.length; hour++){
+            if(hourCounts[hour] < hourCounts[quietest]){
+                quietest = hour;
+            }
+        }
+        return quietest;
+    }
+    
+    // method to return the starting hour of the busiest two-hour period
+    public int busiestTwoHourPeriod()
+    {
+        int maxTwoHourSum = 0;
+        int startHour = 0;
+        
+        for(int hour = 0; hour < hourCounts.length - 1; hour++){
+            int twoHourSum = hourCounts[hour] + hourCounts[hour +1];
+            if(twoHourSum > maxTwoHourSum){
+                maxTwoHourSum = twoHourSum;
+                startHour = hour;
+            }
+        }
+        return startHour;
     }
 }

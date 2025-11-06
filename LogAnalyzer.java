@@ -23,9 +23,9 @@ public class LogAnalyzer
         reader = new LogfileReader("demo.log");
     }
     // create an object to analyze hourly web accesses from a specific file
-    public logAnalyzer(String filename){
+    public LogAnalyzer(String filename){
         hourCounts = new int[24];
-        reader = new logFileReader(filename);
+        reader = new LogfileReader(filename);
     }
     
 
@@ -75,7 +75,7 @@ public class LogAnalyzer
     //busiest hour method
     public int busiestHour()
     {
-        int busiest = o;
+        int busiest = 0;
         for(int hour = 1; hour < hourCounts.length; hour++){
             if (hourCounts[hour] > hourCounts[busiest]){
                 busiest = hour;
@@ -98,13 +98,13 @@ public class LogAnalyzer
     // method to return the starting hour of the busiest two-hour period
     public int busiestTwoHourPeriod()
     {
-        int maxTwoHours = 0;
+        int maxTwoHourSum = 0;
         int startHour = 0;
         
-        for(int hour = o; hour < hourCounts.length - 1; hour++){
+        for(int hour = 0; hour < hourCounts.length - 1; hour++){
             int twoHourSum = hourCounts[hour] + hourCounts[hour +1];
             if(twoHourSum > maxTwoHourSum){
-                maxTwoHoursSum = twoHourSum;
+                maxTwoHourSum = twoHourSum;
                 startHour = hour;
             }
         }

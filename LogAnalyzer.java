@@ -83,4 +83,18 @@ public class LogAnalyzer
         }
         return busiest;
     }
+    
+    //quietest hour method to find and return the quietest hour in the log
+    public int quietestHour(){
+        int quietest = 0;
+        for(int hour = 1; hour < hourCounts.length; hour++){
+            if(hourCounts[hour] < hourCounts[quietest]){
+                quietest = hour;
+            }
+        }
+        return quietest;
+    }
+    
+    // method to return the starting hour of the busiest two-hour period
+    
 }

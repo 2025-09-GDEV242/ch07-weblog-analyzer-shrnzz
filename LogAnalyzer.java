@@ -101,5 +101,13 @@ public class LogAnalyzer
         int maxTwoHours = 0;
         int startHour = 0;
         
+        for(int hour = o; hour < hourCounts.length - 1; hour++){
+            int twoHourSum = hourCounts[hour] + hourCounts[hour +1];
+            if(twoHourSum > maxTwoHourSum){
+                maxTwoHoursSum = twoHourSum;
+                startHour = hour;
+            }
+        }
+        return startHour;
     }
 }
